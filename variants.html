@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Варианты на выбор: календарь и отзывы</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--red:#e8222e;--ice:#dcecfb;--ice-d:#bcd9f5;--bg:#f5f9fe;--ink:#1f2433;--mute:#5b6478;--sh:0 10px 30px rgba(40,80,140,.10)}
+*{box-sizing:border-box;margin:0}
+body{font-family:Nunito,system-ui,sans-serif;font-weight:500;color:var(--ink);background:var(--bg);font-size:18px;line-height:1.4;padding:40px}
+.wrap{max-width:1400px;margin:0 auto}
+h1{font-weight:900;font-size:44px;margin-bottom:8px}
+h2{font-weight:900;font-size:30px;margin-bottom:18px}
+.tag{display:inline-block;background:var(--ink);color:#fff;border-radius:999px;padding:4px 16px;font-weight:900;font-size:16px;margin-bottom:12px}
+.note{color:var(--mute);margin:10px 0 0;font-size:16px}
+.card{background:#fff;border-radius:28px;box-shadow:var(--sh);padding:32px;margin:26px 0 56px}
+button{font:inherit;color:var(--ink);cursor:pointer}
+.out{margin-top:20px;font-weight:800;font-size:20px;min-height:28px}
+.out b{color:var(--red)}
+
+/* A */
+.a{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.day{background:var(--ice);border:3px solid transparent;border-radius:24px;padding:20px 12px;text-align:center;transition:.15s}
+.day b{display:block;font-size:46px;font-weight:900;line-height:1}
+.day span{font-weight:700;color:var(--mute);font-size:17px}
+.day:hover{background:var(--ice-d)}
+.day.on{background:#fff;border-color:var(--red);box-shadow:var(--sh)}
+.day.on b{color:var(--red)}
+
+/* B */
+.b-days{display:flex;gap:12px;margin-bottom:22px}
+.b-days .day{flex:1;padding:14px}
+.b-days .day b{font-size:34px;display:inline}
+.slots{display:grid;grid-template-columns:repeat(7,1fr);gap:12px}
+.slot{background:#fff;border:2px solid var(--ice-d);border-radius:18px;padding:12px 6px;text-align:center;font-weight:900;font-size:22px;transition:.15s}
+.slot small{display:block;font-weight:700;font-size:15px;color:var(--mute)}
+.slot:hover{border-color:var(--ink);transform:translateY(-2px)}
+.slot.on{background:var(--red);border-color:var(--red);color:#fff}
+.slot.on small{color:#fff}
+.slot.hot{background:#fff4d6;border-color:#ffd166}
+.slot.hot.on{background:var(--red);border-color:var(--red)}
+.slot[disabled]{background:var(--bg);border-color:transparent;color:#b3bccb;text-decoration:line-through;cursor:not-allowed;transform:none}
+.slot[disabled] small{text-decoration:none;color:#b3bccb}
+
+/* C */
+.c{display:grid;grid-template-columns:150px repeat(4,1fr);gap:10px;align-items:stretch}
+.c .h{font-weight:900;font-size:24px;text-align:center;padding:8px}
+.c .h small{display:block;font-size:15px;color:var(--mute);font-weight:700}
+.c .r{font-weight:800;display:flex;flex-direction:column;justify-content:center}
+.c .r small{color:var(--mute);font-weight:700;font-size:15px}
+.cell{border:0;border-radius:18px;padding:14px 8px;text-align:center;font-weight:900;font-size:20px;background:#dff5e3;transition:.15s}
+.cell small{display:block;font-weight:700;font-size:15px;color:#2f7a45}
+.cell.few{background:#fff1c9}.cell.few small{color:#9a6b00}
+.cell.none{background:var(--bg);color:#b3bccb;cursor:not-allowed}.cell.none small{color:#b3bccb}
+.cell.na{background:transparent;cursor:default}
+.cell:not(.none):not(.na):hover{transform:translateY(-2px);box-shadow:var(--sh)}
+.cell.on{outline:3px solid var(--red)}
+
+/* отзывы */
+.rev{display:grid;grid-template-columns:230px 1fr;gap:28px;align-items:center}
+.rev>div{min-width:0}
+.sum b{font-size:72px;font-weight:900;line-height:1}
+.stars{color:#ffb021;font-size:24px;letter-spacing:2px}
+.track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:6px 4px 16px;scrollbar-width:none}
+.track::-webkit-scrollbar{display:none}
+.r-card{flex:0 0 340px;scroll-snap-align:start;background:var(--bg);border-radius:22px;padding:22px;position:relative}
+.r-card .who{display:flex;gap:12px;align-items:center;margin-bottom:10px}
+.ava{width:46px;height:46px;border-radius:50%;background:var(--ice-d);display:grid;place-content:center;font-weight:900;font-size:20px}
+.r-card .who b{display:block;font-weight:800}
+.r-card .who small{color:var(--mute);font-size:15px}
+.deal{color:var(--mute);font-size:15px;margin:6px 0 10px}
+.r-card p{font-size:17px}
+.r-card .ph{margin-top:12px;height:120px;border-radius:14px;background:repeating-linear-gradient(45deg,#e6eef8,#e6eef8 10px,#eef4fb 10px,#eef4fb 20px);display:grid;place-content:center;color:var(--mute);font-size:15px;font-weight:700}
+.sample{position:absolute;top:14px;right:14px;background:#fff;border:2px dashed var(--red);color:var(--red);border-radius:8px;padding:1px 8px;font-weight:900;font-size:13px}
+.arrows{display:flex;gap:10px;justify-content:flex-end;margin-top:6px}
+.arrows button{width:48px;height:48px;border-radius:50%;border:2px solid var(--ice-d);background:#fff;font-size:22px;font-weight:900}
+.arrows button:hover{border-color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Варианты на выбор</h1>
+  <p class="note">Занятость здесь условная, для примера. На сайте занятые слоты вы отмечаете в одном списке в коде.</p>
+
+  <div class="card">
+    <span class="tag">Календарь А</span>
+    <h2>Только день</h2>
+    <div class="a" id="a"></div>
+    <div class="out" id="outA"></div>
+    <p class="note">Самый простой. Время согласуете в переписке. Не показывает, что места кончаются.</p>
+  </div>
+
+  <div class="card">
+    <span class="tag">Календарь Б</span>
+    <h2>День и точное время</h2>
+    <div class="b-days" id="bDays"></div>
+    <div class="slots" id="slots"></div>
+    <div class="out" id="outB"></div>
+    <p class="note">Родитель сам выбирает час и сразу видит цену. Зачёркнутые слоты показывают, что время разбирают.</p>
+  </div>
+
+  <div class="card">
+    <span class="tag">Календарь В</span>
+    <h2>Табло: день и часть дня</h2>
+    <div class="c" id="c"></div>
+    <div class="out" id="outC"></div>
+    <p class="note">Вся занятость на одном экране. Точный час согласуете в переписке, поэтому отмечать проще, чем в варианте Б.</p>
+  </div>
+
+  <div class="card">
+    <span class="tag">Отзывы</span>
+    <h2>Лента в формате Авито</h2>
+    <div class="rev">
+      <div class="sum"><b>5,0</b><div class="stars">★★★★★</div><p class="note">10 отзывов за сезон 2025</p></div>
+      <div>
+        <div class="track" id="track"></div>
+        <div class="arrows"><button id="prev" aria-label="Назад">‹</button><button id="next" aria-label="Вперёд">›</button></div>
+      </div>
+    </div>
+    <p class="note">Это образец формата. Тексты, имена и даты встанут из ваших настоящих отзывов.</p>
+  </div>
+</div>
+
+<script>
+const DAYS = [28, 29, 30, 31];
+const price = (d, h) => d === 31 && (h === 23 || h === 0) ? 9000 : d === 31 && h >= 18 ? 6500 : 5000;
+const el = (tag, cls, html) => { const e = document.createElement(tag); e.className = cls; e.innerHTML = html; return e; };
+const pick = (box, e) => { box.querySelectorAll('.on').forEach(x => x.classList.remove('on')); e.classList.add('on'); };
+
+// А
+DAYS.forEach(d => {
+  const b = el('button', 'day', `<b>${d}</b><span>декабря, от 5000 ₽</span>`);
+  b.onclick = () => { pick(a, b); outA.innerHTML = `Вы выбрали <b>${d} декабря</b>`; };
+  a.appendChild(b);
+});
+
+// Б. Условно занятые слоты: 'день-час'
+const BUSY = ['28-18', '28-19', '29-17', '29-18', '29-19', '30-12', '30-17', '30-18', '30-19', '30-20', '31-18', '31-19', '31-20', '31-0'];
+let dayB = 28;
+function drawB() {
+  bDays.innerHTML = ''; slots.innerHTML = '';
+  DAYS.forEach(d => {
+    const b = el('button', 'day' + (d === dayB ? ' on' : ''), `<b>${d}</b> <span>декабря</span>`);
+    b.onclick = () => { dayB = d; outB.innerHTML = ''; drawB(); };
+    bDays.appendChild(b);
+  });
+  const hours = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21].concat(dayB === 31 ? [23, 0] : []);
+  hours.forEach(h => {
+    const p = price(dayB, h), t = String(h).padStart(2, '0') + ':00';
+    const s = el('button', 'slot' + (p > 5000 ? ' hot' : ''), `${t}<small>${p} ₽</small>`);
+    if (BUSY.includes(dayB + '-' + h)) { s.disabled = true; s.querySelector('small').textContent = 'занято'; }
+    s.onclick = () => { pick(slots, s); outB.innerHTML = `Вы выбрали <b>${dayB} декабря, ${t}</b>. Визит ${p} ₽`; };
+    slots.appendChild(s);
+  });
+}
+drawB();
+
+// В. Свободных мест: [утро, день, вечер, ночь] по дням
+const PARTS = [['Утро', '10:00-13:00', 10], ['День', '13:00-17:00', 13], ['Вечер', '17:00-22:00', 18], ['Новогодняя ночь', '23:00-01:00', 23]];
+const FREE = { 28: [3, 4, 2, null], 29: [3, 3, 1, null], 30: [2, 3, 0, null], 31: [3, 2, 1, 1] };
+c.appendChild(el('div', '', ''));
+DAYS.forEach(d => c.appendChild(el('div', 'h', `${d}<small>декабря</small>`)));
+PARTS.forEach(([name, time, h], i) => {
+  c.appendChild(el('div', 'r', `${name}<small>${time}</small>`));
+  DAYS.forEach(d => {
+    const n = FREE[d][i], p = price(d, h);
+    const b = n === null ? el('div', 'cell na', '') :
+      el('button', 'cell' + (n === 0 ? ' none' : n === 1 ? ' few' : ''), n === 0 ? 'Занято<small>мест нет</small>' : `${p} ₽<small>${n === 1 ? 'осталось 1 место' : 'свободно: ' + n}</small>`);
+    if (n) b.onclick = () => { pick(c, b); outC.innerHTML = `Вы выбрали <b>${d} декабря, ${name.toLowerCase()}</b>. Визит ${p} ₽`; };
+    if (n === 0) b.disabled = true;
+    c.appendChild(b);
+  });
+});
+
+// Отзывы: образцы формата, не настоящие тексты
+const dates = ['28', '28', '29', '29', '29', '30', '30', '30', '31', '31'];
+dates.forEach((d, i) => track.appendChild(el('div', 'r-card',
+  `<span class="sample">ОБРАЗЕЦ</span>
+   <div class="who"><div class="ava">И</div><div><b>Имя клиента</b><small>${d} декабря 2025</small></div></div>
+   <div class="stars">★★★★★</div>
+   <div class="deal">Сделка состоялась · Дед Мороз и Снегурочка на дом</div>
+   <p>Здесь будет текст настоящего отзыва: 2-4 строки словами родителя.</p>
+   ${i % 2 ? '' : '<div class="ph">фото с праздника</div>'}`)));
+next.onclick = () => track.scrollBy({ left: 358 * 2 });
+prev.onclick = () => track.scrollBy({ left: -358 * 2 });
+</script>
+</body>
+</html>

@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Дед Мороз и Снегурочка на дом в Казани: 20 минут праздника, от 5000 ₽</title>
+<meta name="description" content="Дед Мороз и Снегурочка приедут к вашим детям домой. Казань, 28-31 декабря. Стихи, загадки, игры, хоровод, подарки и общее фото. Без предоплаты.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--red:#e8222e;--red-d:#c91822;--ice:#dcecfb;--ice-d:#bcd9f5;--bg:#f5f9fe;--ink:#1f2433;--mute:#5b6478;--card:#fff;--r:28px;--sh:0 10px 30px rgba(40,80,140,.10)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:Nunito,system-ui,sans-serif;font-weight:500;color:var(--ink);background:var(--bg);font-size:19px;line-height:1.45;overflow-x:hidden}
+h1,h2,h3{font-weight:900;line-height:1.08;letter-spacing:-.01em}
+h1{font-size:clamp(44px,4.3vw,80px)}
+h2{font-size:clamp(34px,3vw,52px);margin-bottom:28px}
+h3{font-size:23px}
+.wrap{max-width:1400px;margin:0 auto;padding:0 40px}
+section{padding:60px 0;position:relative;scroll-margin-top:60px}
+.card{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);padding:32px}
+
+/* снег */
+#snow{position:fixed;inset:0;pointer-events:none;z-index:5;overflow:hidden}
+#snow i{position:absolute;top:-40px;font-style:normal;color:#9ccdf5;animation:fall linear infinite;will-change:transform}
+@keyframes fall{to{transform:translate3d(var(--dx),110vh,0) rotate(var(--rot))}}
+
+/* кнопки мессенджеров */
+.btns{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:12px;font:inherit;font-weight:800;font-size:20px;padding:15px 28px 15px 18px;border-radius:999px;text-decoration:none;cursor:pointer;background:#fff;color:var(--ink);border:2px solid var(--ice-d);box-shadow:var(--sh);transition:transform .15s,border-color .15s}
+.btn img{width:34px;height:34px;display:block}
+.btn:hover{transform:translateY(-3px);border-color:var(--ink)}
+.cta{background:var(--red);color:#fff;border-color:var(--red);padding:15px 30px;box-shadow:0 10px 24px rgba(232,34,46,.32)}
+.cta:hover{background:var(--red-d);border-color:var(--red-d)}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #2f7fe0;outline-offset:3px}
+
+/* шапка */
+header{position:sticky;top:0;z-index:10;background:rgba(245,249,254,.9);backdrop-filter:blur(10px)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{font-weight:900;font-size:22px;color:var(--ink);text-decoration:none}
+.logo span{color:var(--red)}
+nav{display:flex;gap:26px;align-items:center}
+nav a{color:var(--ink);text-decoration:none;font-weight:700;font-size:17px;padding:10px 4px}
+nav a:hover{color:var(--red)}
+nav .cta{font-size:17px;padding:10px 22px;color:#fff}
+
+/* первый экран */
+.hero{padding:30px 0 40px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;min-height:min(calc(100vh - 300px),640px)}
+.pill{display:inline-flex;align-items:center;gap:10px;background:var(--ice);border-radius:999px;padding:10px 24px;font-weight:800;font-size:22px;margin:22px 0 28px}
+.trust{display:flex;gap:10px 24px;flex-wrap:wrap;margin-top:26px;color:var(--mute);font-weight:700;font-size:17px}
+.trust b{color:var(--ink)}
+.trust span::before{content:"✓";color:var(--red);font-weight:900;margin-right:8px}
+.photo{position:relative;justify-self:center;width:min(100%,600px);aspect-ratio:1;animation:bob 6s ease-in-out infinite}
+.photo img{width:100%;height:100%;object-fit:cover;border-radius:50%;border:14px solid var(--ice);box-shadow:var(--sh);display:block}
+.glow{position:absolute;left:68%;top:14.5%;width:18%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,236,150,.95),rgba(255,214,90,.45) 35%,transparent 68%);mix-blend-mode:screen;animation:twinkle 2.4s ease-in-out infinite;pointer-events:none}
+.price{position:absolute;top:20%;right:-2%;width:168px;height:168px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-content:center;text-align:center;font-weight:900;box-shadow:0 12px 26px rgba(232,34,46,.35);line-height:1;animation:sticker 4s ease-in-out infinite}
+.price small{font-size:20px;display:block;margin-bottom:4px}
+.price b{font-size:40px}
+.gift{position:absolute;left:-4%;bottom:2%;font-size:110px;line-height:1;filter:drop-shadow(0 10px 14px rgba(0,0,0,.18));animation:wiggle 3.5s ease-in-out infinite;transform-origin:50% 90%}
+.star{position:absolute;right:6%;bottom:-2%;font-size:64px;animation:spin 9s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-10px)}}
+@keyframes twinkle{0%,100%{opacity:.45;transform:translate(-50%,-50%) scale(.8)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.25)}}
+@keyframes sticker{0%,100%{transform:rotate(9deg) scale(1)}50%{transform:rotate(5deg) scale(1.06)}}
+@keyframes wiggle{0%,60%,100%{transform:rotate(0)}70%{transform:rotate(-9deg)}80%{transform:rotate(8deg)}90%{transform:rotate(-4deg)}}
+@keyframes spin{0%,100%{transform:rotate(14deg) scale(1)}50%{transform:rotate(-12deg) scale(1.15)}}
+
+/* даты */
+.b-days{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.day{font:inherit;color:var(--ink);cursor:pointer;background:var(--ice);border:3px solid transparent;border-radius:22px;padding:14px;text-align:center;transition:.15s}
+.day b{font-size:36px;font-weight:900;line-height:1}
+.day span{font-weight:700;color:var(--mute);font-size:18px}
+.day:hover{background:var(--ice-d)}
+.day.on{background:#fff;border-color:var(--red);box-shadow:var(--sh)}
+.day.on b{color:var(--red)}
+.slots{display:grid;grid-template-columns:repeat(7,1fr);gap:12px;margin-bottom:24px}
+.slot{font:inherit;color:var(--ink);cursor:pointer;background:#fff;border:2px solid var(--ice-d);border-radius:18px;padding:12px 6px;text-align:center;font-weight:900;font-size:23px;transition:.15s}
+.slot small{display:block;font-weight:700;font-size:16px;color:var(--mute)}
+.slot:hover{border-color:var(--ink);transform:translateY(-2px)}
+.slot.hot{background:#fff4d6;border-color:#ffd166}
+.slot.on{background:var(--red);border-color:var(--red);color:#fff}
+.slot.on small{color:#fff}
+.slot[disabled]{background:var(--bg);border-color:transparent;color:#b3bccb;text-decoration:line-through;cursor:not-allowed;transform:none}
+.slot[disabled] small{text-decoration:none;color:#b3bccb}
+.picked{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.picked p{font-size:21px;font-weight:700}
+.picked p b{color:var(--red);font-weight:900}
+
+/* отзывы */
+.rev-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
+.rev-head h2{margin:0}
+.arrows{display:flex;gap:10px}
+.arrows button{font:inherit;cursor:pointer;width:52px;height:52px;border-radius:50%;border:2px solid var(--ice-d);background:#fff;font-size:24px;font-weight:900;color:var(--ink)}
+.arrows button:hover{border-color:var(--ink)}
+.track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:6px 4px 20px;scrollbar-width:none}
+.track::-webkit-scrollbar{display:none}
+.r-card{flex:0 0 calc((100% - 40px)/3);scroll-snap-align:start;background:#fff;border-radius:var(--r);box-shadow:var(--sh);padding:26px;position:relative}
+.who{display:flex;gap:12px;align-items:center;margin-bottom:10px}
+.ava{width:50px;height:50px;border-radius:50%;background:var(--ice-d);display:grid;place-content:center;font-weight:900;font-size:21px}
+.who b{display:block;font-weight:800}
+.who small{color:var(--mute);font-size:16px}
+.stars{color:#ffb021;font-size:24px;letter-spacing:2px}
+.deal{color:var(--mute);font-size:16px;margin:4px 0 10px}
+.sample{position:absolute;top:16px;right:16px;border:2px dashed var(--red);color:var(--red);border-radius:8px;padding:1px 8px;font-weight:900;font-size:13px}
+#toast{position:fixed;left:50%;bottom:32px;transform:translate(-50%,120px);background:var(--ink);color:#fff;padding:16px 26px;border-radius:18px;font-weight:700;z-index:20;transition:transform .3s;max-width:90vw;text-align:center}
+#toast.show{transform:translate(-50%,0)}
+
+/* программа */
+.steps{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.step{border-radius:var(--r);padding:26px 14px 22px;text-align:center;box-shadow:var(--sh);transition:transform .2s}
+.step:hover{transform:translateY(-6px) rotate(-1.5deg)}
+.step i{font-style:normal;font-size:72px;line-height:1;display:block;margin-bottom:12px;filter:drop-shadow(0 6px 8px rgba(0,0,0,.14))}
+.step time{display:inline-block;background:#fff;border-radius:999px;padding:3px 14px;font-weight:900;font-size:16px;margin-bottom:8px}
+.step p{font-weight:800;font-size:19px;line-height:1.2}
+.step:nth-child(1){background:linear-gradient(160deg,#ffe3e5,#ffc9cd)}
+.step:nth-child(2){background:linear-gradient(160deg,#e4e6ff,#cdd1ff)}
+.step:nth-child(3){background:linear-gradient(160deg,#fff1c9,#ffe08f)}
+.step:nth-child(4){background:linear-gradient(160deg,#d9f6dd,#b6ecbf)}
+.step:nth-child(5){background:linear-gradient(160deg,#ffe0f0,#ffc4e1)}
+.step:nth-child(6){background:linear-gradient(160deg,#dcecfb,#bcd9f5)}
+
+/* образ */
+.look{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.look .card{padding:0;overflow:hidden}
+.look img{width:100%;aspect-ratio:4/3.4;object-fit:cover;display:block;transition:transform .5s}
+.look .card:hover img{transform:scale(1.05)}
+.look h3{padding:20px 26px 24px}
+
+/* как проходит */
+.how{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.how .card{text-align:center;padding:28px 20px}
+.how i{font-style:normal;font-size:54px;line-height:1;display:block;margin-bottom:12px}
+.how p{color:var(--mute);font-size:18px;margin-top:6px}
+
+/* цены */
+.prices{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:stretch}
+table{width:100%;border-collapse:collapse;font-size:20px}
+td{padding:18px 0;border-bottom:2px solid var(--bg)}
+tr:last-child td{border:0}
+td:last-child{text-align:right;font-weight:900;font-size:26px;white-space:nowrap}
+td small{display:block;color:var(--mute);font-size:16px}
+.together{background:var(--red);color:#fff;display:flex;flex-direction:column;justify-content:center}
+.together h3{font-size:30px}
+.together .big{font-size:58px;font-weight:900;line-height:1;margin:18px 0 6px}
+
+/* вопросы */
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+details{background:#fff;border-radius:22px;box-shadow:var(--sh);padding:22px 28px}
+summary{font-weight:800;font-size:20px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::after{content:"+";color:var(--red);font-weight:900;font-size:26px;line-height:1}
+details[open] summary::after{content:"−"}
+details p{margin-top:12px;color:var(--mute);font-size:18px}
+
+/* финал */
+.final .card{background:var(--ice);text-align:center;padding:60px 32px;box-shadow:none}
+.final .btns{justify-content:center}
+footer{padding:28px 0 48px;text-align:center;color:var(--mute);font-size:15px}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}#snow{display:none}}
+</style>
+</head>
+<body>
+<div id="snow" aria-hidden="true"></div>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#top">Дед Мороз <span>в Казани</span></a>
+    <nav>
+      <a href="#dates">Даты</a>
+      <a href="#program">Программа</a>
+      <a href="#prices">Цены</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#faq">Вопросы</a>
+      <a class="btn cta" href="#dates">Записаться</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Дед Мороз приедет к&nbsp;вашим детям</h1>
+      <div class="pill">20 минут праздника дома. Казань 📍</div>
+      <div class="btns" data-m></div>
+      <div class="trust"><span>Без предоплаты</span><span><b>4 сезона</b> поздравляем семьи</span><span>28-31 декабря</span></div>
+    </div>
+    <div class="photo">
+      <img src="img/hero.webp" alt="Дед Мороз со светящимся посохом и Снегурочка" width="900" height="900">
+      <div class="glow"></div>
+      <div class="price"><small>от</small><b>5000 ₽</b></div>
+      <span class="gift" aria-hidden="true">🎁</span>
+      <span class="star" aria-hidden="true">⭐</span>
+    </div>
+  </div>
+</section>
+
+<section id="dates">
+  <div class="wrap">
+    <div class="card">
+      <h2>Свободные даты</h2>
+      <div class="b-days" id="bDays" role="group" aria-label="Выбор дня"></div>
+      <div class="slots" id="slots" role="group" aria-label="Выбор времени"></div>
+      <div class="picked">
+        <p id="picked" aria-live="polite">Выберите день и время</p>
+        <div class="btns" data-m></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="program">
+  <div class="wrap">
+    <h2>20 минут по минутам</h2>
+    <div class="steps">
+      <div class="step"><i>👋</i><time>0-3 мин</time><p>Стихи и знакомство</p></div>
+      <div class="step"><i>🧩</i><time>3-7 мин</time><p>Загадки</p></div>
+      <div class="step"><i>🎯</i><time>7-11 мин</time><p>Игры и конкурсы</p></div>
+      <div class="step"><i>🎄</i><time>11-15 мин</time><p>Песня и хоровод</p></div>
+      <div class="step"><i>🎁</i><time>15-18 мин</time><p>Подарки из мешка</p></div>
+      <div class="step"><i>📸</i><time>18-20 мин</time><p>Общее фото</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="look">
+  <div class="wrap">
+    <h2>Дед Мороз, в которого верят</h2>
+    <div class="look">
+      <div class="card"><img src="img/boroda.webp" alt="Дед Мороз с белой бородой и седыми бровями"><h3>Борода и седые брови</h3></div>
+      <div class="card"><img src="img/posoh.webp" alt="Светящийся посох со звездой"><h3>Посох светится</h3></div>
+      <div class="card"><img src="img/snegurochka.webp" alt="Снегурочка в голубой шубке"><h3>Снегурочка с косой</h3></div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <h2>Как всё проходит</h2>
+    <div class="how">
+      <div class="card"><i>💬</i><h3>Пишете нам</h3><p>Дата, район, возраст детей</p></div>
+      <div class="card"><i>🗓️</i><h3>Бронируем время</h3><p>Без предоплаты</p></div>
+      <div class="card"><i>🚪</i><h3>Встреча у двери</h3><p>Подарки и оплата, дети не видят</p></div>
+      <div class="card"><i>✨</i><h3>Стук в дверь</h3><p>И 20 минут чуда</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="prices">
+  <div class="wrap">
+    <h2>Цены за визит</h2>
+    <div class="prices">
+      <div class="card">
+        <table>
+          <tr><td>28, 29, 30 декабря<small>и 31 декабря до 18:00</small></td><td>от 5000 ₽</td></tr>
+          <tr><td>31 декабря с 18:00</td><td>6500 ₽</td></tr>
+          <tr><td>Новогодняя ночь<small>с 23:00 до 00:00 и с 00:00 до 01:00</small></td><td>9000 ₽</td></tr>
+        </table>
+      </div>
+      <div class="card together">
+        <h3>Позовите соседей или друзей</h3>
+        <div class="big">от 1700 ₽</div>
+        <p>с семьи: визит за 5000 ₽ делится на троих</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap">
+    <div class="rev-head"><h2>Отзывы семей</h2><div class="arrows"><button id="prev" aria-label="Назад">‹</button><button id="next" aria-label="Вперёд">›</button></div></div>
+    <div class="track" id="track"></div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <h2>Ответы родителям</h2>
+    <div class="faq">
+      <details><summary>Нужна ли предоплата?</summary><p>Нет. Оплата при встрече у двери.</p></details>
+      <details><summary>Как передать подарки незаметно?</summary><p>Мы звоним, когда подъехали. Вы выходите к двери, подарки отправляются в мешок.</p></details>
+      <details><summary>А если ребёнок заболел?</summary><p>Визит можно отменить. Напишите нам заранее.</p></details>
+      <details><summary>Можно позвать несколько семей?</summary><p>Да, две-три семьи. Цена за визит одна на всех.</p></details>
+      <details><summary>В какие районы приезжаете?</summary><p>Вся Казань. Пригород обсудим в переписке.</p></details>
+      <details><summary>На какой возраст программа?</summary><p>От 3 до 10 лет. Игры подбираем под возраст.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <div class="card">
+      <h2>Четыре дня в году. Займите свой вечер</h2>
+      <div class="btns" data-m></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">Дед Мороз и Снегурочка на дом. Казань, 28-31 декабря</div></footer>
+<div id="toast" role="status"></div>
+
+<script>
+// Контакты
+const TG  = 'Egor_Voronchikhin';
+const WA  = '79127525560';
+const PHONE = '+7 912 752-55-60';
+const MAX = ''; // ссылка на профиль из MAX: Профиль, значок QR, "Скопировать ссылку"
+
+// Занятые слоты в формате 'день-час', например '30-18'. Полночь 31-го: '31-0'
+const BUSY = [];
+
+const DAYS = [28, 29, 30, 31];
+const price = (d, h) => d === 31 && (h === 23 || h === 0) ? 9000 : d === 31 && h >= 18 ? 6500 : 5000;
+let day = 28, time = null;
+
+function message() {
+  return 'Здравствуйте! Хочу пригласить Деда Мороза и Снегурочку' +
+    (time !== null ? ` на ${day} декабря в ${String(time).padStart(2, '0')}:00 (${price(day, time)} ₽)` : '') +
+    '.\nРайон: \nВозраст детей: ';
+}
+function buttons() {
+  const text = encodeURIComponent(message());
+  const list = [
+    ['Telegram', 'telegram', `https://t.me/${TG}?text=${text}`],
+    ['MAX', 'max', MAX || 'https://max.ru/'],
+    ['WhatsApp', 'whatsapp', `https://wa.me/${WA}?text=${text}`],
+  ];
+  document.querySelectorAll('[data-m]').forEach(box => {
+    box.innerHTML = list.map(([name, ico, url]) =>
+      `<a class="btn" href="${url}" target="_blank" rel="noopener" data-app="${ico}"><img src="img/ico/${ico}.svg" alt="">${name}</a>`).join('');
+  });
+}
+// MAX не принимает готовый текст в ссылке: кладём сообщение в буфер и подсказываем
+document.addEventListener('click', e => {
+  if (!e.target.closest('[data-app=max]')) return;
+  navigator.clipboard?.writeText(message()).catch(() => {});
+  const t = document.getElementById('toast');
+  t.textContent = `Сообщение скопировано. Вставьте его в чат MAX, наш номер ${PHONE}`;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 6000);
+});
+
+function calendar() {
+  const bDays = document.getElementById('bDays'), slots = document.getElementById('slots');
+  bDays.innerHTML = ''; slots.innerHTML = '';
+  DAYS.forEach(d => {
+    const b = document.createElement('button');
+    b.className = 'day' + (d === day ? ' on' : '');
+    b.setAttribute('aria-pressed', d === day);
+    b.innerHTML = `<b>${d}</b> <span>декабря</span>`;
+    b.onclick = () => { day = d; time = null; document.getElementById('picked').textContent = 'Выберите время'; calendar(); buttons(); };
+    bDays.appendChild(b);
+  });
+  [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21].concat(day === 31 ? [23, 0] : []).forEach(h => {
+    const p = price(day, h), t = String(h).padStart(2, '0') + ':00', busy = BUSY.includes(day + '-' + h);
+    const s = document.createElement('button');
+    s.className = 'slot' + (p > 5000 ? ' hot' : '') + (h === time ? ' on' : '');
+    s.disabled = busy;
+    s.innerHTML = `${t}<small>${busy ? 'занято' : p + ' ₽'}</small>`;
+    s.onclick = () => {
+      time = h; calendar(); buttons();
+      document.getElementById('picked').innerHTML = `Вы выбрали <b>${day} декабря, ${t}</b>. Визит ${p} ₽`;
+    };
+    slots.appendChild(s);
+  });
+}
+calendar();
+buttons();
+
+// Отзывы: вписать настоящие. Пока текст пустой, карточка помечена "Образец"
+const REVIEWS = Array.from({ length: 8 }, () => ({ name: '', date: '', text: '' }));
+const track = document.getElementById('track');
+track.innerHTML = REVIEWS.map(r => `<div class="r-card">
+  ${r.text ? '' : '<span class="sample">ОБРАЗЕЦ</span>'}
+  <div class="who"><div class="ava">${(r.name || 'И')[0]}</div><div><b>${r.name || 'Имя клиента'}</b><small>${r.date || 'декабрь 2025'}</small></div></div>
+  <div class="stars">★★★★★</div>
+  <div class="deal">Сделка состоялась · Дед Мороз и Снегурочка на дом</div>
+  <p>${r.text || 'Здесь будет текст настоящего отзыва: 2-4 строки словами родителя.'}</p></div>`).join('');
+const step = () => track.clientWidth + 20;
+document.getElementById('next').onclick = () => track.scrollBy({ left: step() });
+document.getElementById('prev').onclick = () => track.scrollBy({ left: -step() });
+
+// снег: 28 снежинок, каждая со своей скоростью, размером и сносом
+const snow = document.getElementById('snow');
+for (let n = 0; n < 28; n++) {
+  const f = document.createElement('i');
+  f.textContent = '❄';
+  const size = 12 + Math.random() * 22, dur = 14 + Math.random() * 16;
+  f.style.cssText = `left:${Math.random() * 100}%;font-size:${size}px;opacity:${.25 + Math.random() * .5};animation-duration:${dur}s;animation-delay:${-Math.random() * dur}s;--dx:${(Math.random() - .5) * 160}px;--rot:${(Math.random() - .5) * 360}deg`;
+  snow.appendChild(f);
+}
+</script>
+</body>
+</html>
